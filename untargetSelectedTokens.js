@@ -1,0 +1,3 @@
+(async () => {
+	game.user.updateTokenTargets([]);
+})();
