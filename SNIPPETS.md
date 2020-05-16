@@ -1,5 +1,16 @@
 # Useful Code Snippets
 
+## Macro-Specific Variables
+
+The following variables are pre-defined and available in every macro.
+
+```js
+const speaker = ChatMessage.getSpeaker();
+const actor = game.actors.get(speaker.actor);
+const token = canvas.tokens.get(speaker.token);
+const character = game.user.character;
+```
+
 ## Tokens
 
 ### HUD
