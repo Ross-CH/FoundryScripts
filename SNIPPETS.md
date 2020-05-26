@@ -74,6 +74,13 @@ roll.total // Use this value
 await roll.toMessage(); // Post the roll to chat
 ```
 
+## Rollable Tables
+
+```js
+// Draw from a table
+table.draw();
+```
+
 ## Notifications
 
 ```js
