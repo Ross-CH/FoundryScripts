@@ -1,7 +1,6 @@
 /**
  * A simple rage-toggle macro.
- * TODO(Future) allow this to toggle resistances to appropriate damage types + advantage on appropriate checks/etc
- *   if/when Foundry's sheet supports this.
+ * TODO(Future) allow this to toggle advantage on appropriate checks/etc if/when Foundry's sheet supports this.
  */
 (async () => {
 	if (canvas.tokens.controlled.length !== 1) return ui.notifications.warn(`Please select exactly one token!`);
@@ -39,6 +38,9 @@
 		((actorUpdate.data.bonuses = {}).mwak = {}).damage = nxtDamageBonus;
 		actorUpdate.flags.wmgsRageDamage = null;
 
+		const prevResistances = actor.data.flags.wmgsOriginalResistances;
+		if (prevResistances) ((actorUpdate.data.traits = {}).dr = {}).value = [...prevResistances];
+
 		ChatMessage.create({
 			content: `<div style="font-style: italic">${actor.name} calms the fuck down.</div>`,
 			user: game.userId,
@@ -49,6 +51,12 @@
 		const strRageDamage = `+${rageDamage}`;
 		((actorUpdate.data.bonuses = {}).mwak = {}).damage = `${curDamageBonus || ""}${strRageDamage}`;
 		actorUpdate.flags.wmgsRageDamage = strRageDamage;
+
+		const curResistances = actor.data.data.traits.dr.value || [];
+		const nxtResistances = new Set(curResistances);
+		["acid", "bludgeoning", "cold", "fire", "force", "lightning", "necrotic", "piercing", "poison", "radiant", "slashing", "thunder"].forEach(it => nxtResistances.add(it));
+		((actorUpdate.data.traits = {}).dr = {}).value = [...nxtResistances];
+		actorUpdate.flags.wmgsOriginalResistances = JSON.parse(JSON.stringify(curResistances));
 
 		ChatMessage.create({
 			content: `<div style="color: red; font-weight: bold; font-size: 120%;">${actor.name.toUpperCase()} FLIES INTO A RAGE!</div>`,
