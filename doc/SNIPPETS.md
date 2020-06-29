@@ -81,6 +81,19 @@ await roll.toMessage(); // Post the roll to chat
 table.draw();
 ```
 
+## Chat
+
+```js
+ChatMessage.create({
+    content: `<div>My message</div>`,
+    user: game.userId,
+    // 0 = "other", 1 = "OoC", 2 = "IC", 3 = "emote", 4 = "whisper", 5 = "roll"
+    type: 1,
+    // "dice.wave", "drums.wav", "lock.wav", "notify.wav"
+    sound: "sounds/notify.wav"
+});
+```
+
 ## Notifications
 
 ```js
