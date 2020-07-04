@@ -24,10 +24,10 @@ When rolling a sheet item, the item's data is accessible as:
 
 Additionally, for dnd5e Actors, the following special variable namespace exist:
 ```
-@class.<sluggified class name>.<...data path>
+@classes.<sluggified class name>.<...data path>
 ```
 
-For example, `@class.rogue.levels` could be used to add sneak attack damage with the following roll expression:
+For example, `@classes.rogue.levels` could be used to add sneak attack damage with the following roll expression:
 ```
 +(ceil(@classes.rogue.levels / 2))d6
 ```
