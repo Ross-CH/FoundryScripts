@@ -28,6 +28,16 @@ const hud = token.hasActiveHUD ? token.layer.hud : null;
 const hud = canvas.getLayer("TokenLayer").hud;
 ```
 
+### Movement
+
+```js
+await token.update({
+    x: 1000,
+    y: 1000,
+    rotation: 270
+});
+```
+
 ### Selection
 
 ```js
