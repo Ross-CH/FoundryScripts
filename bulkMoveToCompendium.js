@@ -81,7 +81,7 @@
 			const tabMetas = DIR_METAS.map((meta, i) => {
 				let rowMetas = [];
 
-				const $wrpList = $(`<div class="w-100 h-100 overflow-y-scroll flex-col"></div>`);
+				const $wrpList = $(`<div class="w-100 h-100 overflow-y-auto flex-col min-h-0"></div>`);
 
 				const doPopulate = () => {
 					$wrpList.empty();
@@ -241,7 +241,7 @@
 
 			$$($html)`<div class="w-100 h-100 flex-col">
 				<div class="flex btn-group w-100 mb-2">${$btnsTabHeaders}</div>
-				<div class="flex w-100 h-100">
+				<div class="flex w-100 h-100 min-h-0">
 					${tabMetas.map(meta => meta.$tab)}
 				</div>
 				${tabMetas.map(meta => meta.$tabFooter)}
