@@ -6,7 +6,7 @@
 	if (canvas.tokens.controlled.length !== 1) return ui.notifications.warn(`Please select exactly one token!`);
 
 	const actor = canvas.tokens.controlled[0].actor;
-	if (!actor) return ui.notifications.warn(`Please select an actor with a token!`);
+	if (!actor) return ui.notifications.warn(`Please select a token with an actor!`);
 
 	const classItems = actor.data.items.filter(it => it.type === "class")
 	if (!classItems.length) return ui.notifications.warn(`Actor has no class!`);
