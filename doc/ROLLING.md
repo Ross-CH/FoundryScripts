@@ -31,3 +31,11 @@ For example, `@classes.rogue.levels` could be used to add sneak attack damage wi
 ```
 +(ceil(@classes.rogue.levels / 2))d6
 ```
+
+#### Listing More Variables
+
+To get a list of _most_ of the available variables for an actor, use the following:
+```
+flattenObject(actor.getRollData())
+```
+Simple prefix an `@` on any key from the returned object to use it in a roll.
