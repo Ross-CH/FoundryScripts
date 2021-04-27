@@ -1,4 +1,6 @@
-/** Quickly set all an actor's proficiencies, senses, damage res./vuln./imm., condition imm., race, and background */
+/**
+ * Quickly (re)set all an actor's proficiencies, senses, damage res./vuln./imm., condition imm., race, background, ...
+ */
 (async () => {
 	const ACTOR_ID = "<your ID here>";
 
@@ -34,6 +36,7 @@
 					toolProf: {value: [], custom: ""},
 				},
 				details: {race: "", background: ""},
+				currency: {pp: 0, gp: 0, ep: 0, sp: 0, cp: 0},
 			}
 		});
 })();
