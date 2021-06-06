@@ -15,7 +15,7 @@
 		.update({
 			data: {
 				abilities: Object.keys(CONFIG.DND5E.abilities)
-					.map(it => ({[it]: {proficient: SAVE_PROF_LEVEL}}))
+					.map(it => ({[it]: {proficient: SAVE_PROF_LEVEL, value: 10}}))
 					.reduce((a, b) => Object.assign(a, b), {}),
 				skills: Object.keys(CONFIG.DND5E.skills)
 					.map(it => ({[it]: {value: SKILL_PROF_LEVEL}}))
@@ -23,7 +23,8 @@
 				attributes: {
 					senses: Object.keys(CONFIG.DND5E.senses)
 						.map(it => ({[it]: SENSE_RANGE}))
-						.reduce((a, b) => Object.assign(a, b), {}),
+						.reduce((a, b) => Object.assign(a, b), {special: ""}),
+					hp: {value: 0, max: 0, temp: null, tempmax: null},
 				},
 				traits: {
 					di: {value: [], custom: ""},
