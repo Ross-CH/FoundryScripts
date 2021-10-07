@@ -1,5 +1,6 @@
 /**
  * Quickly (re)set all an actor's proficiencies, senses, damage res./vuln./imm., condition imm., race, background, ...
+ * @version 0.8.9
  */
 (async () => {
 	const ACTOR_ID = "<your ID here>";
@@ -11,7 +12,7 @@
 	// Feet/etc.
 	const SENSE_RANGE = 0;
 
-	await Actor.collection.get(ACTOR_ID)
+	await CONFIG.Actor.collection.instance.get(ACTOR_ID)
 		.update({
 			data: {
 				abilities: Object.keys(CONFIG.DND5E.abilities)
