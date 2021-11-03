@@ -11,17 +11,15 @@
 
 	window.__cameraTrackToken_token = token;
 
-	if (window.__cameraTrackToken_active != null) {
-		window.__cameraTrackToken_active = !window.__cameraTrackToken_active;
+	if (window.__cameraTrackToken_idHook != null) {
+		Hooks.off("preUpdateToken", window.__cameraTrackToken_idHook);
+		window.__cameraTrackToken_idHook = null;
 		return;
 	}
 
-	window.__cameraTrackToken_active = true;
-
-	Hooks.on("preUpdateToken", async (scene, token, updateData) => {
-		if (!window.__cameraTrackToken_active) return;
+	window.__cameraTrackToken_idHook = Hooks.on("preUpdateToken", async (token, updateData, options, userId) => {
 		if (updateData.x == null && updateData.y == null) return;
-		if (window.__cameraTrackToken_token.id !== token._id) return;
+		if (window.__cameraTrackToken_token.id !== token.id) return;
 
 		if (token.x !== updateData.x || token.y !== updateData.y) {
 			const xOffsetSidebar = (ui.sidebar._collapsed ? 0 : 1) * (W_SIDEBAR / 2);
