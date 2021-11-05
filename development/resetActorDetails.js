@@ -39,6 +39,9 @@
 					toolProf: {value: [], custom: ""},
 				},
 				details: {race: "", background: ""},
+				resources: ["primary", "secondary", "tertiary"]
+					.map(it => ({[it]: {value: null, max: null, label: "", sr: false, lr: false}}))
+					.reduce((a, b) => Object.assign(a, b)),
 				currency: {pp: 0, gp: 0, ep: 0, sp: 0, cp: 0},
 			}
 		});
