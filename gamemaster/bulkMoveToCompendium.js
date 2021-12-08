@@ -42,7 +42,7 @@
 				width: 800,
 				height: BulkMover.getMaxWindowHeight(),
 				title: "Bulk Move to Compendium",
-				template: `modules/plutonium/template/ImportList.handlebars`,
+				template: `modules/plutonium/template/ImportList.hbs`,
 				resizable: true
 			});
 		}
@@ -54,27 +54,27 @@
 				{
 					name: "Scenes",
 					folderType: "Scene",
-					collection: Scene.collection
+					collection: CONFIG.Scene.collection.instance
 				},
 				{
 					name: "Actors",
 					folderType: "Actor",
-					collection: Actor.collection
+					collection: CONFIG.Actor.collection.instance
 				},
 				{
 					name: "Items",
 					folderType: "Item",
-					collection: Item.collection
+					collection: CONFIG.Item.collection.instance
 				},
 				{
 					name: "Journal Entries",
 					folderType: "JournalEntry",
-					collection: JournalEntry.collection
+					collection: CONFIG.JournalEntry.collection.instance
 				},
 				{
 					name: "Rollable Tables",
 					folderType: "RollTable",
-					collection: RollTable.collection
+					collection: CONFIG.RollTable.collection.instance
 				}
 			];
 
@@ -86,10 +86,10 @@
 				const doPopulate = () => {
 					$wrpList.empty();
 
-					meta.collection.entities.forEach(ent => {
+					meta.collection.contents.forEach(ent => {
 						const $cb = $(`<input type="checkbox">`);
 
-						const $row = $$`<label class="row w-100">
+						const $row = $$`<label class="row flex-vh-center w-100">
 							<div class="col-2 flex-vh-center">${$cb}</div>
 							<div class="col-10 flex-v-center">${ent.name}</div>
 						</label>`.appendTo($wrpList);
@@ -173,16 +173,17 @@
 								if (entry != null && isOverwrite) {
 									cntOverwrites++;
 									if (progressBar.isCancelled) break;
-									await pack.deleteEntity(entry._id);
+									await pack.delete(entry._id);
 									if (progressBar.isCancelled) break;
 								}
 								if (progressBar.isCancelled) break;
-								await pack.importEntity(entity);
+								await pack.importDocument(entity);
 
 								cntSuccess++;
 							} catch (e) {
 								cntError++
 								ui.notifications.error(`Failed to transfer ${selRowMeta.entityName} (id ${selRowMeta.entityId})! ${VeCt.STR_SEE_CONSOLE}`);
+								setTimeout(() => { throw e; })
 							}
 							progressBar.setProgress(cntSuccess + cntError, selRowMetas.length);
 						}
