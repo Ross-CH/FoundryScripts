@@ -42,7 +42,7 @@
 				width: 800,
 				height: BulkMover.getMaxWindowHeight(),
 				title: "Bulk Move to Compendium",
-				template: `modules/plutonium/template/ImportList.handlebars`,
+				template: `modules/plutonium/template/ImportList.hbs`,
 				resizable: true
 			});
 		}
