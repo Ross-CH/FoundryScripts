@@ -75,7 +75,12 @@
 					name: "Rollable Tables",
 					folderType: "RollTable",
 					collection: CONFIG.RollTable.collection.instance
-				}
+				},
+				{
+					name: "Decks",
+					folderType: "Cards",
+					collection: CONFIG.Cards.collection.instance
+				},
 			];
 
 			const tabMetas = DIR_METAS.map((meta, i) => {
