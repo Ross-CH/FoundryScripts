@@ -1,5 +1,5 @@
 {
   "devDependencies": {
-    "foundry-pc-types": "gitlab:foundry-projects/foundry-pc/foundry-pc-types"
+    "@league-of-foundry-developers/foundry-vtt-types": "^9.238.0"
   }
 }
