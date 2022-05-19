@@ -1,15 +1,15 @@
 (async () => {
-	const _MACRO_SOURCE = "toggleFlankingHomebrew";
+	const _MACRO_SOURCE = "toggleFlankedHomebrew";
 
 	const effectData = {
 		disabled: false,
 		icon: "icons/commodities/biological/mouth-pincer-brown.webp",
-		label: "Flanking",
+		label: "Flanked!",
 		changes: [
 			{
-				key: "data.bonuses.mwak.attack",
+				key: "data.attributes.ac.bonus",
 				mode: 2,
-				value: "+2",
+				value: "-2",
 				priority: 4
 			},
 		],
@@ -18,7 +18,7 @@
 				statusId: "upgrade"
 			},
 			FoundryScripts: {
-				macroSource: _MACRO_SOURCE,
+				macroSource: _MACRO_SOURCE ,
 			},
 		},
 	};
