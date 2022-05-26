@@ -15,7 +15,7 @@
 		],
 		flags: {
 			core: {
-				statusId: "upgrade"
+				statusId: "downgrade"
 			},
 			FoundryScripts: {
 				macroSource: _MACRO_SOURCE ,
