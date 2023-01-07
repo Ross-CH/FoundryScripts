@@ -1,6 +1,6 @@
 /**
  * Roll Ferocity, and add to the selected token.
- * For Foundry v9.
+ * For Foundry v10.
  */
 (async () => {
 	if (!game.combat) return ui.notifications.warn(`No active combat encounter!`);
@@ -72,10 +72,20 @@
 	const numAdjacent = await modal.pGetResult();
 	if (numAdjacent == null) return;
 
-	const roll = new Roll(`1d4${numAdjacent ? ` + ${numAdjacent}` : ""}`);
-	await roll.evaluate();
+	// Additional Ferocity from the "Beyond Instinct" feature
+	const cntLevelsBeastheart = game.user.character.classes?.beastheart?.system?.levels ?? 0;
+	const additionalFerocity = cntLevelsBeastheart >= 15
+		? 5
+		: cntLevelsBeastheart >= 10
+			? 3
+			: cntLevelsBeastheart >= 5
+				? 1
+				: 0;
 
-	const totalFerocity = itmFerocity.data.data.uses.value + roll.total;
+	const roll = new Roll(`1d4${additionalFerocity ? ` + ${additionalFerocity}` : ""}${numAdjacent ? ` + ${numAdjacent}` : ""}`);
+	await roll.evaluate({async: true});
+
+	const totalFerocity = itmFerocity.system.uses.value + roll.total;
 
 	await roll.toMessage({
 		speaker: {actor: token.actor},
@@ -87,7 +97,7 @@
 		[
 			{
 				_id: itmFerocity.id,
-				data: {
+				system: {
 					uses: {
 						value: totalFerocity,
 					},
