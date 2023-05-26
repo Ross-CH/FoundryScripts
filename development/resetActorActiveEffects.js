@@ -1,11 +1,9 @@
 /**
- * Quickly reset an actor's active effects.
- * @version 0.8.9
+ * Quickly reset your actor's active effects.
+ * @version v11
  */
 (async () => {
-	const ACTOR_ID = "<your ID here>";
-
-	const ids = CONFIG.Actor.collection.instance.get(ACTOR_ID).data.effects.map(it => it.id);
-	await CONFIG.Actor.collection.instance.get(ACTOR_ID)
+	const ids = game.user.character.effects.map(it => it.id);
+	await game.user.character
 		.deleteEmbeddedDocuments("ActiveEffect", ids);
 })();
