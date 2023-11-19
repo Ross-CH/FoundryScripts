@@ -27,7 +27,7 @@
 						.map(it => ({[it]: SENSE_RANGE}))
 						.reduce((a, b) => Object.assign(a, b), {special: ""}),
 					hp: {value: 0, max: null, temp: null, tempmax: null},
-					movement: {burrow: 0, climb: 0, fly: 0, swim: 0, walk: 0, units: "ft", hover: false},
+					movement: {burrow: null, climb: null, fly: null, swim: null, walk: null, units: "ft", hover: false},
 				},
 				traits: {
 					di: {value: [], custom: ""},
