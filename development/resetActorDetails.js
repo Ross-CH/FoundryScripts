@@ -34,6 +34,7 @@
 					languages: {value: [], custom: ""},
 					weaponProf: {value: [], custom: ""},
 					armorProf: {value: [], custom: ""},
+					size: "med",
 				},
 				details: {race: "", background: ""},
 				resources: ["primary", "secondary", "tertiary"]
