@@ -7,9 +7,6 @@
 	const SAVE_PROF_LEVEL = 0;
 	const SKILL_PROF_LEVEL = 0;
 
-	// Feet/etc.
-	const SENSE_RANGE = 0;
-
 	await game.user.character
 		.update({
 			system: {
@@ -24,7 +21,7 @@
 					.reduce((a, b) => Object.assign(a, b), {}),
 				attributes: {
 					senses: Object.keys(CONFIG.DND5E.senses)
-						.map(it => ({[it]: SENSE_RANGE}))
+						.map(it => ({[it]: null}))
 						.reduce((a, b) => Object.assign(a, b), {special: ""}),
 					hp: {value: 0, max: null, temp: null, tempmax: null},
 					movement: {burrow: null, climb: null, fly: null, swim: null, walk: null, units: "ft", hover: false},
