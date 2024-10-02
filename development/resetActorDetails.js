@@ -1,6 +1,6 @@
 /**
  * Quickly (re)set all your actor's proficiencies, senses, damage res./vuln./imm., condition imm., race, background, ...
- * @version v11
+ * @version v12
  */
 (async () => {
 	// 0 = not, 1 = proficient, 2 = expert, 0.5 = jack of all trades
@@ -36,7 +36,31 @@
 					armorProf: {value: [], custom: ""},
 					size: "med",
 				},
-				details: {race: "", background: ""},
+				details: {
+					race: "",
+					background: "",
+
+					alignment: "",
+					gender: "",
+					eyes: "",
+					height: "",
+					faith: "",
+					hair: "",
+					skin: "",
+					age: "",
+					weight: "",
+
+					ideal: "",
+					bond: "",
+					flaw: "",
+					trait: "",
+					appearance: "",
+
+					biography: {
+						"value": "",
+						"public": ""
+					},
+				},
 				resources: ["primary", "secondary", "tertiary"]
 					.map(it => ({[it]: {value: null, max: null, label: "", sr: false, lr: false}}))
 					.reduce((a, b) => Object.assign(a, b)),
