@@ -20,7 +20,7 @@
 	const slots = Array.from({length: 9}, () => 0);
 	[...clsItems, ...character.items.filter(it => it.type === "subclass")]
 		.map(it => it.system.spellcasting?.progression)
-		.filter(Boolean)
+		.filter(it => it && it !== "none")
 		.sort((a, b) => PROGS.indexOf(a) - PROGS.indexOf(b))
 		.forEach((pr, i) => {
 			if (!PROGS.includes(pr)) return
@@ -41,6 +41,8 @@
 	}
 
 	const existing = character.effects.find(eff => eff.flags["fcu"]?.["isGestalt"]);
-	if (existing) return character.updateEmbeddedDocuments("ActiveEffect", [{"_id": existing._id, ...body}]);
-	await character.createEmbeddedDocuments("ActiveEffect", [{name: "Gestalt Adjustments", img: "https://i.imgur.com/SEFh5y0.png", ...body}])
+	if (existing) await character.updateEmbeddedDocuments("ActiveEffect", [{"_id": existing._id, ...body}]);
+	else await character.createEmbeddedDocuments("ActiveEffect", [{name: "Gestalt Adjustments", img: "https://i.imgur.com/SEFh5y0.png", ...body}])
+
+	ui.notifications.info(`Gestalt effect set for "${character.name}" (${character.id})!`)
 })();
