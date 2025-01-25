@@ -1,6 +1,7 @@
 /**
  * Present a UI for quickly searching through every default Foundry icon, and applying it to whichever sheet was active
  * when the macro was run.
+ * @version v12
  */
 (async () => {
 	const $getAppElement = app => {
@@ -9,19 +10,36 @@
 		return $(app.element);
 	};
 
-	const app = Object.entries(ui.windows)
-		.map(([appId, app]) => {
-			const zIndex = Number(((($getAppElement(app)[0] || {}).style || {})["z-index"] || -1));
-			if (isNaN(zIndex) || !~zIndex) console.warn(`Could not determine z-index for app ${appId}`);
-			return {
-				appId,
-				app,
-				zIndex: isNaN(zIndex) ? -1 : zIndex,
-			};
-		})
+	const app = [
+		...Object.entries(ui.windows)
+			.map(([appId, app]) => {
+				const zIndex = Number(((($getAppElement(app)[0] || {}).style || {})["z-index"] || -1));
+
+				if (isNaN(zIndex) || !~zIndex) {
+					if (isNaN(zIndex) || !~zIndex) console.warn(`Could not determine z-index for app ${appId}`);
+				}
+
+				return {
+					appId,
+					app,
+					zIndex: isNaN(zIndex) ? -1 : zIndex,
+				};
+			})
+			.filter(Boolean),
+		...[...foundry.applications.instances.entries()]
+			.filter(([, app]) => app.hasFrame)
+			.map(([appId, app]) => {
+				const zIndex = Number(((($getAppElement(app)[0] || {}).style || {})["z-index"] || -1));
+
+				return {
+					appId,
+					app,
+					zIndex: isNaN(zIndex) ? -1 : zIndex,
+				};
+			}),
+	]
 		.sort((a, b) => b.zIndex - a.zIndex)
-		.map(({app}) => app)
-		.filter(app => app.document)[0];
+		.map(({app}) => app)		.filter(app => app.document)[0];
 
 	if (!app) return ui.notifications.warn("No open doc windows!");
 
