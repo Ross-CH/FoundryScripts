@@ -1,6 +1,6 @@
 /**
  * Quickly (re)set all your actor's proficiencies, senses, damage res./vuln./imm., condition imm., race, background, ...
- * @version v12
+ * @version v14
  */
 (async () => {
 	// 0 = not, 1 = proficient, 2 = expert, 0.5 = jack of all trades
@@ -17,7 +17,7 @@
 					.map(it => ({[it]: {value: SKILL_PROF_LEVEL}}))
 					.reduce((a, b) => Object.assign(a, b), {}),
 				tools: Object.keys(game.user.character.system.tools)
-					.map(it => ({[`-=${it}`]: null}))
+					.map(it => ({[`${it}`]: new foundry.data.operators.ForcedDeletion()}))
 					.reduce((a, b) => Object.assign(a, b), {}),
 				attributes: {
 					senses: Object.keys(CONFIG.DND5E.senses)
