@@ -32,7 +32,7 @@
 					dv: {value: [], custom: ""},
 					ci: {value: [], custom: ""},
 					languages: {value: [], custom: ""},
-					weaponProf: {value: [], custom: ""},
+					weaponProf: {value: [], custom: "", mastery: {value: [], bonus: []}},
 					armorProf: {value: [], custom: ""},
 					size: "med",
 				},
