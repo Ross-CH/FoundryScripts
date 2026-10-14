@@ -1,5 +1,14 @@
 {
-  "devDependencies": {
-    "@league-of-foundry-developers/foundry-vtt-types": "^9.238.0"
-  }
+	"name": "foundryscripts",
+	"version": "0.0.1",
+	"private": true,
+	"homepage": "https://github.com/Ross-CH/FoundryScripts#readme",
+	"bugs": {
+		"url": "https://github.com/Ross-CH/FoundryScripts/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Ross-CH/FoundryScripts.git"
+	},
+	"license": "UNLICENSED"
 }

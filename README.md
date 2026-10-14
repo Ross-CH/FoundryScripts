@@ -1,9 +1,5 @@
 # FoundryScripts
 
-#### Foundry Types
-
-See [here](https://gitlab.com/foundry-projects/foundry-pc/foundry-pc-types).
-
 #### Tips and Tricks
 
 - `await` cannot be used in the root scope of a macro. This can be circumvented by wrapping your macro code in:
